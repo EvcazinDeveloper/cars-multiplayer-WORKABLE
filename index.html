@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Corrida de Carros</title>
+    <!-- Lib -->
+    <script src="./lib/p5.min.js"></script>
+    <script src="./lib/p5.dom.min.js"></script>
+    <script src="./lib/p5.sound.min.js"></script>
+    <script src="./lib/p5.play.js"></script>
+    
+
+
+    <script
+      src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js">
+    </script>
+    
+    <link rel="stylesheet" href="style.css" />
+    
+    <script src="./js/Game.js"></script>
+    <script src="./js/Form.js"></script>
+    <script src="./js/Player.js"></script>
+
+    <!-- ADICIONAR CÓDIGO Firebase SDK ABAIXO -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCmlBrVWamVRwbwZ78OdMJujyY2Htp9sbo",
+        authDomain: "multiplayer-cars-2fe14.firebaseapp.com",
+        databaseURL: "https://multiplayer-cars-2fe14-default-rtdb.firebaseio.com",
+        projectId: "multiplayer-cars-2fe14",
+        storageBucket: "multiplayer-cars-2fe14.appspot.com",
+        messagingSenderId: "613212200230",
+        appId: "1:613212200230:web:c3c2e67b06323ae0c8b5e7"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+   
+  </head>
+  <body>
+    
+    <script src="./sketch.js"></script>
+  </body>
+</html>
