@@ -1,5 +1,8 @@
 class Game {
-  constructor() {}
+  constructor() {
+    this.reset = createElement("h2");
+    this.resetButton = createButton("");
+  }
 
   start() {
     form = new Form();
@@ -49,8 +52,20 @@ class Game {
           var x = allPlayers[PLAYERS].positionX;
           var y = height - allPlayers[PLAYERS].positionY;
 
-          cars[index - 1].position.x = x
-          cars[index - 1].position.y = y
+          cars[index - 1].position.x = x;
+          cars[index - 1].position.y = y;
+
+          // indetificando jogador
+          if (index == player.index) {
+            stroke(10);
+            fill("green");
+
+            ellipse(x, y, 70, 70)
+
+            //Alterar a posição da camera na posição Y
+            camera.position.x = cars[index - 1].position.x;
+            camera.position.y = cars[index - 1].position.y;
+          }
         }
         this.movimentHandler();
         drawSprites();
@@ -58,7 +73,15 @@ class Game {
   }
   movimentHandler() {
     if (keyIsDown(UP_ARROW)) {
-      player.positionY = player.positionY + 1
+      player.positionY = player.positionY + 1;
+      player.update();
+    }
+    if (keyIsDown(LEFT_ARROW) && player.positionX > width / 3 - 50) {
+      player.positionX = player.positionX - 1;
+      player.update();
+    }
+    if (keyIsDown(RIGHT_ARROW) && player.positionX < width / 2 + 300) {
+      player.positionX = player.positionX + 1;
       player.update();
     }
   }
