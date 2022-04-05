@@ -2,6 +2,9 @@ class Game {
   constructor() {
     this.reset = createElement("h2");
     this.resetButton = createButton("");
+    this.leaderboardT = createElement("h2"); 
+    this.leaderboardP1 = createElement("h2");
+    this.leaderboardP2 = createElement("h2"); 
   }
 
   start() {
@@ -37,7 +40,38 @@ class Game {
   handleElements() {
     form.hide();
     form.titleImg.position(40, 50);
-    form.titleImg.class("gameTitleAfterEffect")
+    form.titleImg.class("gameTitleAfterEffect");
+
+    this.reset.html("Reniciar o Jogo");
+    this.reset.class("resetText");
+    this.reset.position(width / 2 + 200, 40);
+
+    this.resetButton.class("resetButton");
+    this.resetButton.position(width / 2 + 230, 100);
+
+    this.leaderboardT.html("placar");
+    this.leaderboardT.class("resetText");
+    this.leaderboardT.position(width / 3 - 60, 40);
+
+    this.leaderboardP1.class("leadersText");
+    this.leaderboardP1.position(width / 3 - 50, 80);
+    
+    this.leaderboardP2.class("leadersText");
+    this.leaderboardP2.position(width / 3 - 50, 130);
+  }
+
+  resetHandler() {
+    this.resetButton.mousePressed(
+      () => {
+        database.ref("/").set({
+          gameState: 0,
+          playerCount: 0,
+          players: {}
+        })
+
+        // recarregar janela
+        window.location.reload();
+      })
   }
 
   play() {
@@ -46,6 +80,7 @@ class Game {
 
     if (allPlayers !== undefined) {
         image(trackImage, 0, - height * 5, width, height * 6);
+        this.showLeaders();
         var index = 0
         for(var PLAYERS in allPlayers) {
           index = index + 1;
@@ -68,6 +103,7 @@ class Game {
           }
         }
         this.movimentHandler();
+        this.resetHandler();
         drawSprites();
     }
   }
