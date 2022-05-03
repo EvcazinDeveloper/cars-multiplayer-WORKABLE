@@ -7,6 +7,7 @@ class Player {
     this.score = 0;
     this.ranking = 0;
     this.oilValue = 185;
+    this.life = 185;
   }
 
   getCount() {
@@ -69,7 +70,19 @@ class Player {
       positionY: this.positionY,
       ranking: this.ranking,
       score: this.score,
+      life: this.life
     });
   }
 
+  getFinish() {
+    database.ref("destination").on("value", data => {
+      this.ranking = data.val();
+    })
+  }
+
+  static finishUpdate(rank) {
+    database.ref("/").update({
+      destination: rank
+    })
+  }
 }
